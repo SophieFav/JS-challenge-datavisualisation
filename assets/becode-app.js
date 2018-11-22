@@ -128,6 +128,7 @@ graph3.id="dimple3";
 bodyContent.parentNode.insertBefore(graph3, bodyContent);
 let databecode =[];
 let data5 = [];
+
 function loadDoc() {
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
