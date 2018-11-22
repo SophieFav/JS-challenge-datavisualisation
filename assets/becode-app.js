@@ -123,35 +123,55 @@ chart2.draw();
 
 ////////// graph 3 ////////////
 
-function doc() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-    databecode = JSON.parse(this.responseText);
-    console.log(databecode);
-    
-        var svg = dimple.newSvg("#dimple2", 800, 600);
-        var data = []; 
-        for (let i = 0; i < databecode.length; i++) {
-            let y = {"Nombre":databecode[i][0], "Value":databecode[i][1]};
-            data.push(y);           
-        }
-        console.log(data)
-        var chart = new dimple.chart(svg, data);
-        var x = chart.addCategoryAxis("x", "Nombre");
-        var y1 = chart.addMeasureAxis("y", "Valeur" );
-        var y2 = chart.addMeasureAxis("y", "Value");
-        y1.overrideMin = -30;
-        y1.overrideMax = 30;
-        y2.overrideMin = -30;
-        y2.overrideMax = 30;
-        y2.hidden = true;
-        chart.addSeries(null, dimple.plot.line, [x, y2]);
-        chart.draw();     
-              }
-            };
-    
-    xhttp.open("GET", "https://inside.becode.org/api/v1/data/random.json", true);
-    xhttp.send();
+let graph3 = document.createElement("div");
+graph3.id="dimple3";
+bodyContent.parentNode.insertBefore(graph3, bodyContent);
+let databecode =[];
+let data5 = [];
+function loadDoc() {
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+if (this.readyState == 4 && this.status == 200) {
+databecode = JSON.parse(this.responseText);
+
+function updateChart() {
+        svg10.remove()
+        xhttp.open("GET", "https://inside.becode.org/api/v1/data/random.json", true);
+        xhttp.send();
+        data10.push(y)
+        data5 = data5.concat(databecode)
+     
+       //console.log(data5)
+}
+
+setTimeout(function(){updateChart()}, 5000);
+
+    var svg10 = dimple.newSvg("#dimple3", 800, 600);
+    var data10 = []; 
+    for (let i = 0; i < data5.length; i++) {
+        let y = {"Nombre":data5[i][0], "Value":data5[i][1]};
+        data10.push(y);  
+        console.log(data10)
+           
     }
-        doc();
+    
+
+    var chart = new dimple.chart(svg10, data10);
+    var x = chart.addCategoryAxis("x", "Nombre");
+    var y1 = chart.addMeasureAxis("y", "Valeur" );
+    var y2 = chart.addMeasureAxis("y", "Value");
+    y1.overrideMin = -30;
+    y1.overrideMax = 30;
+    y2.overrideMin = -30;
+    y2.overrideMax = 30;
+    y2.hidden = true;
+    chart.addSeries(null, dimple.plot.line, [x, y2]);
+    chart.draw();
+          }
+        };
+
+xhttp.open("GET", "https://inside.becode.org/api/v1/data/random.json", true);
+xhttp.send();
+
+}
+loadDoc();
