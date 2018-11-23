@@ -147,7 +147,7 @@ function updateChart() {
 
 setTimeout(function(){updateChart()}, 5000);
 
-    var svg10 = dimple.newSvg("#dimple3", 800, 600);
+    var svg10 = dimple.newSvg("#dimple3", 800, 600);$
     var data10 = []; 
     for (let i = 0; i < data5.length; i++) {
         let y = {"Nombre":data5[i][0], "Value":data5[i][1]};
